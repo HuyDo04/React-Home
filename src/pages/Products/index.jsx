@@ -8,10 +8,6 @@ const Products = () => {
       <h1 className="page-title">Danh Sách Sản Phẩm</h1>
 
       <ProductList setProducts={setProducts} query="" />
-
-      {products.length === 0 && (
-        <p className="empty-message">Không có sản phẩm nào.</p>
-      )}
     </div>
   );
 };
