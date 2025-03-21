@@ -81,23 +81,6 @@ const ProductForm = ({ submitTitle = "Thêm Sản Phẩm", setLoading }) => {
         console.error("API Error:", data);
         throw data;
       }
-
-      setFormValues({
-        title: "",
-        description: "",
-        category: "",
-        price: "",
-        discountPercentage: "",
-        rating: "",
-        stock: "",
-        tags: [],
-        brand: "",
-        sku: "",
-        weight: "",
-        minimumOrderQuantity: "",
-        thumbnail: "",
-      });
-
       setErrors({});
       navigate("/products");
     } catch (error) {
