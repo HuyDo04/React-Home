@@ -1,9 +1,16 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import ProductList from "../../components/ProductList";
-import Loading from "../../components/Loading";
 import "./Search.css";
 
+let myTime;
 const Search = () => {
+  const params = new URLSearchParams(location.search);
+  const [query, setQuery] = useState(params.get("q") || "");
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    history.replaceState(null, null, `q=${query}`);
+  }, [query]);
   return (
     <div className="page-container">
       <h1 className="search-title">Tìm kiếm sản phẩm</h1>
@@ -13,17 +20,18 @@ const Search = () => {
           type="text"
           className="search-input"
           placeholder="Nhập tên sản phẩm..."
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            clearTimeout(myTime);
+            myTime = setTimeout(() => {
+              setQuery(e.target.value);
+            }, 500);
+          }}
         />
-        <button className="search-button">Tìm kiếm</button>
       </div>
 
-      <ProductList />
-
-      {/* Loading nhé */}
-      {/* <Loading /> */}
-
-      {/* Message hiển thị khi không tìm thấy nhé AE */}
-      <p className="empty-message">Không tìm thấy sản phẩm nào.</p>
+      <ProductList query={query} />
     </div>
   );
 };

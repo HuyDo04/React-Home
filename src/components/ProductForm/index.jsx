@@ -73,7 +73,7 @@ const ProductForm = ({ submitTitle = "" , setLoading}) => {
         }
       })
       .finally(() => {
-        setLoading(false); // Tắt loading khi xử lý xong
+        setLoading(false); 
       });
   };
 
